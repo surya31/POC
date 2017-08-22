@@ -1,0 +1,95 @@
+extends ../layouts/default
+
+mixin post(post)
+	.post(data-ks-editable=editable(user, { list: 'Voice', id: post.id }))
+		h2: a(href='/voices/voice/' + post.slug)= post.title
+		p.lead.text-muted Posted 
+			if post.publishedDate
+				| on #{post._.publishedDate.format('MMMM Do, YYYY')} 
+			if post.categories && post.categories.length
+				| in 
+				each cat, i in post.categories
+					a(href='/voices/' + cat.key)= cat.name
+					if i < post.categories.length - 1
+						| , 
+					else
+						|  
+			if post.author
+				| by #{post.author.name.first}
+		if post.image.exists
+			img(src=post._.image.fit(160,160)).img.pull-right
+		p!= post.content.brief
+		if post.content.extended
+			p.read-more: a(href='/voices/voice/' + post.slug) Read more...
+
+block content
+	if user
+		include ./map.jade
+		include ./indices.jade
+		.container(style="background-color: #cecece; padding: 30px 0")
+			include ./sidebars/sidebar-left.jade
+			.col-md-6
+				if data.posts.results.length
+							each post in data.posts.results
+								.row.voice.voice-user
+									.block.block-head.row(style="padding: 0")
+										.col-md-6
+											span.cat.pull-left(style="padding-right: 5px") Abortion
+											span.mention.pull-left  | @HillaryClinton
+										.col-md-6
+											img.pull-right(src="/images/3-dots-icon.png")
+									hr
+									.block.block-user.row
+										.col-md-1
+											img(src="/images/sarah-parker.png")
+										.col-md-11
+											p.user-name #{post.author.name.first} #{post.author.name.last}
+											p.user-location Chicago, Illinois
+									.block.block-headline.row
+										.col-md-12
+											b #{post.title}
+									.block.block-image.row
+										img(src=post._.image.fit(567,330) style="display: block; margin: 0 auto")
+									.block.block-text.row
+										.col-md-12
+											p #{post.content.extended}
+												span.read-more  Read More...
+									.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+										.col-md-3
+											button.btn.btn-agree
+												img(src="/images/Politician_42.png")
+											span.agree 435
+										.col-md-6
+											progress(value="435" max="612")
+										.col-md-3
+											span.disagree 177
+											button.btn.btn-disagree
+												img(src="/images/Politician_45.png")
+									.block.block-comments.row
+										.comment.comment-1.col-md-12
+											.col-md-1
+												img(src="/images/arshiya-meezan.png")
+											.col-md-10(style="margin-left: 15px")
+												span.comment-user-name Arshiya Meezan 
+												span.comment-user-text Women should have the right todecide if they want to keep an unplanned child
+											.col-md-10.comment-actions(style="margin-left: 15px")
+												span.like Like
+												span.reply Reply
+										.comment.comment-2.col-md-12
+											.col-md-1
+												img(src="/images/ransher-singh.png")
+											.col-md-10(style="margin-left: 15px")
+												span.comment-user-name Ransher Singh 
+												span.comment-user-text I agree with you, sometimes things can happen but I believe everyone should have the right to decide what they do with their bodies, so why shouldn't they be allowed to exercise that right?
+											.col-md-10.comment-actions(style="margin-left: 60px")
+												span.like Like
+												span.reply Reply
+										hr.full
+										.col-md-12(style="padding-bottom: 20px")
+											p.view-more View 56 More Comments
+											input.write-comment(type="text" placeholder="Write a comment." style="width: 100%; border: none")
+									hr.full
+									.col-md-12
+										span #{post._.publishedDate.format('MMMM Do, YYYY')} 
+			include ./sidebars/sidebar-right.jade
+			

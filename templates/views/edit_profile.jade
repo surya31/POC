@@ -1,0 +1,43 @@
+
+extends ../layouts/default
+
+block content
+		.container(style="background-color: #cecece; padding: 30px 0")
+			.col-md-3
+				br
+			.col-md-6
+				<h2 style="text-align: center">Edit Profile</h2>
+				form(enctype="application/x-www-form-urlencoded" method="POST" action="/api/user/#{user._id}/update").auth-form
+					.auth-box
+						.auth-box-col
+								.form-group
+									label(for='fname') First Name
+									input(type='text', name='name.first', id='fname', value='#{user.name.first}').form-control
+								.form-group
+									label(for='email') Email
+									input(type='email', name='email', id='email', value='#{user.email}').form-control
+								.form-group
+									label(for='post') Post
+									input(type='text', name='post', id='post', value='#{user.post}').form-control
+								.form-group
+									label(for='qualification') Qualification
+									input(type='text', name='qualification', id='qualification', value='#{user.qualification}').form-control
+								.form-group
+									label(for='party') Party
+									input(type='text', name='party', id='party', value='#{user.party}').form-control
+								.form-group
+									label(for='lname') Last Name
+									input(type='text', name='name.last', id='lname', value='#{user.name.last}').form-control
+								.form-group
+									label(for='location') Location
+									input(type='text', name='location', id='location', value='#{user.location}').form-control
+								.form-group
+									label(for='company') Company
+									input(type='text', name='company', id='company', value='#{user.company}').form-control
+								.form-group
+									label(for='university') University
+									input(type='text', name='university', id='university', value='#{user.university}').form-control
+								.form-group
+									button(type='submit' style="margin-top: 25px").btn.btn-primary Save Profile
+			.col-md-3
+				br

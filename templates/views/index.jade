@@ -1,0 +1,355 @@
+extends ../layouts/default
+
+block content
+	if user
+		include ./map.jade
+		include ./indices.jade
+		.container(style="background-color: #cecece; padding: 30px 0")
+			include ./sidebars/sidebar-left.jade
+			.col-md-6
+				if user
+					form.row.voice(style="padding-bottom: 20px" enctype="application/x-www-form-urlencoded" method="POST" action="/api/voice/create")
+						.voice-top.col-md-12
+							.col-md-2
+								img(src="/images/sidhant-profile-image.png" style="margin-top: 20px; width: 90%")
+							.col-md-10.text-area
+								p(style="padding-top: 10px; color: #cecece"): b Photo / Video
+								hr.full-dark
+								input(name="title" type="text" placeholder="Header" style="font-weight: bold; color: #cecece; font-size: 22px; border: none; padding-bottom: 10px")
+								textarea(name="content.extended" placeholder="Describe your Voice (optional)" style="width: 100%; margin-bottom: 18px; color: #cecece; font-size: 18px; border: none" rows="3")
+								input(name="author" type="hidden" value="#{user.id}")
+								input(name="state" type="hidden" value="published")
+								input(name="publishedDate_date" type="hidden" value="#{data.now.format('YYYY-MM-DD')}")
+								input(name="publishedDate_time" type="hidden" value="#{data.now.format('hh:mm:ss a')}")
+						hr
+						.voice-bottom.col-md-12
+							.col-md-6
+								img.tag-icon(src="/images/tag-supporters-icon.png")
+								img.tag-icon(src="/images/issue-icon.png")
+								img.tag-icon(src="/images/tag-politician.png")
+							.col-md-6
+								button.btn.pull-right(style="margin-left: 10px; background-color: #991b1c; color: #fff")
+									img(src="./images/raise-voice-white-icon.png" style="padding-right: 5px")
+									span Raise Voice
+								button.btn.btn-default.dropdown-toggle.pull-right(data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #dadada; padding-right: 5px")
+									img(src="/images/globe-icon.png" style="vertical-align: bottom")
+									span Locations 
+									span.caret
+					if data.posts.results.length
+								each post in data.posts.results
+									.row.voice.voice-user
+										.block.block-head.row(style="padding: 0")
+											.col-md-6
+												span.cat.pull-left(style="padding-right: 5px") Abortion
+												span.mention.pull-left  | @HillaryClinton
+											.col-md-6
+												img.pull-right(src="/images/3-dots-icon.png")
+										hr
+										.block.block-user.row
+											.col-md-1
+												img(src="/images/sarah-parker.png")
+											.col-md-11
+												p.user-name #{post.author.name.first} #{post.author.name.last}
+												p.user-location Chicago, Illinois
+										.block.block-headline.row
+											.col-md-12
+												b #{post.title}
+										.block.block-image.row
+											img(src=post._.image.fit(567,330) style="display: block; margin: 0 auto")
+										.block.block-text.row
+											.col-md-12
+												p #{post.content.extended}
+													span.read-more  Read More...
+										.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+											.col-md-3
+												button.btn.btn-agree(id="agree" data-id="#{post._id}")
+													img(src="/images/Politician_42.png")
+												span.agree #{post.agree}
+											.col-md-6
+												progress(value="#{post.agree}" max="#{post.agree + post.disagree}")
+											.col-md-3
+												span.disagree #{post.disagree}
+												button.btn.btn-disagree(id="disagree" data-id="#{post._id}")
+													img(src="/images/Politician_45.png")
+										.block.block-comments.row
+											.comment.comment-1.col-md-12
+												.col-md-1
+													img(src="/images/arshiya-meezan.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Arshiya Meezan 
+													span.comment-user-text Women should have the right todecide if they want to keep an unplanned child
+												.col-md-10.comment-actions(style="margin-left: 15px")
+													span.like Like
+													span.reply Reply
+											.comment.comment-2.col-md-12
+												.col-md-1
+													img(src="/images/ransher-singh.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Ransher Singh 
+													span.comment-user-text I agree with you, sometimes things can happen but I believe everyone should have the right to decide what they do with their bodies, so why shouldn't they be allowed to exercise that right?
+												.col-md-10.comment-actions(style="margin-left: 60px")
+													span.like Like
+													span.reply Reply
+											hr.full
+											.col-md-12(style="padding-bottom: 20px")
+												p.view-more View 56 More Comments
+												input.write-comment(type="text" placeholder="Write a comment." style="width: 100%; border: none")
+										hr.full
+										.col-md-12
+											span #{post._.publishedDate.format('MMMM Do, YYYY | hh:mm a')}
+					.row.voice.voice-user
+										.block.block-head.row(style="padding: 0")
+											.col-md-6
+												span.cat.pull-left(style="padding-right: 5px") Abortion
+												span.mention.pull-left  | @HillaryClinton
+											.col-md-6
+												img.pull-right(src="/images/3-dots-icon.png")
+										hr
+										.block.block-user.row
+											.col-md-1
+												img(src="/images/sarah-parker.png")
+											.col-md-11
+												p.user-name Sarah Parker
+												p.user-location Chicago, Illinois
+										.block.block-headline.row
+											.col-md-12
+												b Women should have the right to choose if an unplanned pregnancy occurs.
+										.block.block-image.row
+											img(src="/images/freedom-means-choice.png" style="display: block; margin: 0 auto")
+										.block.block-text.row
+											.col-md-12
+												p Women should have reproductive freedom and should be able to make their own choice. As Margaret Sanger said, 
+													span.read-more  Read More...
+										.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+											.col-md-3
+												button.btn.btn-agree
+													img(src="/images/Politician_42.png")
+												span.agree 435
+											.col-md-6
+												progress(value="435" max="#{435+177}")
+											.col-md-3
+												span.disagree 177
+												button.btn.btn-disagree
+													img(src="/images/Politician_45.png")
+										.block.block-comments.row
+											.comment.comment-1.col-md-12
+												.col-md-1
+													img(src="/images/arshiya-meezan.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Arshiya Meezan 
+													span.comment-user-text Women should have the right todecide if they want to keep an unplanned child
+												.col-md-10.comment-actions(style="margin-left: 15px")
+													span.like Like
+													span.reply Reply
+											.comment.comment-2.col-md-12
+												.col-md-1
+													img(src="/images/ransher-singh.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Ransher Singh 
+													span.comment-user-text I agree with you, sometimes things can happen but I believe everyone should have the right to decide what they do with their bodies, so why shouldn't they be allowed to exercise that right?
+												.col-md-10.comment-actions(style="margin-left: 60px")
+													span.like Like
+													span.reply Reply
+											hr.full
+											.col-md-12(style="padding-bottom: 20px")
+												p.view-more View 56 More Comments
+												input.write-comment(type="text" placeholder="Write a comment." style="width: 100%; border: none")
+										hr.full
+										.col-md-12
+											span June 30, 2016 | 03:50 PM
+					.row.voice.voice-user
+										.block.block-head.row(style="padding: 0")
+											.col-md-6
+												span.cat.pull-left(style="padding-right: 5px") Economy
+												span.mention.pull-left 
+											.col-md-6
+												img.pull-right(src="/images/3-dots-icon.png")
+										hr
+										.block.block-user.row
+											.col-md-1
+												img(src="/images/bernie-sanders.png")
+											.col-md-11
+												p.user-name.user-verified Bernie Sanders
+												p.user-location Montpelier, Vermont
+										.block.block-headline.row
+											.col-md-12
+												b The middle class is diminishing and soon America will lose the backbone of its economy. Stand up for your country and join the revolution!
+										.block.block-text.row
+											.col-md-12
+												p We need to implement policies that get at the root causes of these inequalities. We need to expand the social safety net, 
+													span.read-more  Read More...
+										.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+											.col-md-3
+												button.btn.btn-agree
+													img(src="/images/Politician_42.png")
+												span.agree 8483
+											.col-md-6
+												progress(value="8483" max="#{8483+2318}")
+											.col-md-3
+												span.disagree 2318
+												button.btn.btn-disagree
+													img(src="/images/Politician_45.png")
+										.block.block-comments.row
+											.comment.comment-1.col-md-12
+												.col-md-1
+													img(src="/images/kristen-lob.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Kristen Lob 
+													span.comment-user-text The Obama administration's liberal policies have led to the middle class disappearing!
+												.col-md-10.comment-actions(style="margin-left: 15px")
+													span.like Like
+													span.reply Reply
+											.comment.comment-2.col-md-12
+												.col-md-1
+													img(src="/images/ransher-singh.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Ibrahim Oyekan 
+													span.comment-user-text
+														span.mention @BernieSanders,
+														span your policies will help re-strengthen the American middle class.
+														span.hash-tag #FeelTheBern
+												.col-md-10.comment-actions(style="margin-left: 60px")
+													span.like Like
+													span.reply Reply
+											hr.full
+											.col-md-12(style="padding-bottom: 20px")
+												p.view-more View 624 More Comments
+												input.write-comment(type="text" placeholder="Write a comment." style="width: 100%; border: none")
+										hr.full
+										.col-md-12
+											span June 30, 2016 | 02:30PM
+					.row.voice.voice-user
+										.block.block-head.row(style="padding: 0")
+											.col-md-6
+												span.cat.pull-left(style="padding-right: 5px") Gun Control
+												span.mention.pull-left  | @DonaldTrump
+											.col-md-6
+												img.pull-right(src="/images/3-dots-icon.png")
+										hr
+										.block.block-user.row
+											.col-md-1
+												img(src="/images/simon-jones.png")
+											.col-md-11
+												p.user-name Simon Jones
+												p.user-location Melbourne, Florida
+										.block.block-headline.row
+											.col-md-12
+												b Controlling guns is not the solution as guns don't kill people, criminals do. The people of America do not want you to allow gun control legislation to be passed.
+										.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+											.col-md-3
+												button.btn.btn-agree
+													img(src="/images/Politician_42.png")
+												span.agree 1264
+											.col-md-6
+												progress(value="1264" max="#{1264+2548}")
+											.col-md-3
+												span.disagree 2548
+												button.btn.btn-disagree
+													img(src="/images/Politician_45.png")
+										.block.block-comments.row
+											.comment.comment-1.col-md-12
+												.col-md-1
+													img(src="/images/johnathan-doe.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Johnathan Doe 
+													span.comment-user-text Guns DO kill people because of their sheer power. Ever heard of a mass choking incident? 
+														span.mention @SimonJones
+												.col-md-10.comment-actions(style="margin-left: 15px")
+													span.like Like
+													span.reply Reply
+											.comment.comment-2.col-md-12
+												.col-md-1
+													img(src="/images/melanie-buck.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Melanie Buck 
+													span.comment-user-text Who will protect you when a burgler enters your house at 3 in the morning?
+														span.mention @JohnathanDoe
+												.col-md-10.comment-actions(style="margin-left: 60px")
+													span.like Like
+													span.reply Reply
+											hr.full
+											.col-md-12(style="padding-bottom: 20px")
+												p.view-more View 18 More Comments
+												input.write-comment(type="text" placeholder="Write a comment." style="width: 100%; border: none")
+										hr.full
+										.col-md-12
+											span June 30, 2016 | 03:50 PM
+					.row.voice.voice-user
+										.block.block-head.row(style="padding: 0")
+											.col-md-6
+												span.cat.pull-left(style="padding-right: 5px") Police accountability
+											.col-md-6
+												img.pull-right(src="/images/3-dots-icon.png")
+										hr
+										.block.block-user.row
+											.col-md-1
+												img(src="/images/rahm-emanuel.png")
+											.col-md-11
+												p.user-name.user-verified Rahm Emanuel
+												p.user-location Chicago, Illinois
+										.block.block-headline.row
+											.col-md-12
+												b My goal is to bring safety to every community, through building trust in our police department, we will create a new system for police accountability and oversight.
+										.block.block-image.row
+											img(src="/images/rahm-emanuel-post.png" style="display: block; margin: 0 auto")
+										.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+											.col-md-3
+												button.btn.btn-agree
+													img(src="/images/Politician_42.png")
+												span.agree 2435
+											.col-md-6
+												progress(value="2435" max="#{2435+963}")
+											.col-md-3
+												span.disagree 963
+												button.btn.btn-disagree
+													img(src="/images/Politician_45.png")
+										.block.block-comments.row
+											.comment.comment-1.col-md-12
+												.col-md-1
+													img(src="/images/james-li.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name James Li 
+													span.comment-user-text Thank you for reassuring us Mayor
+														span.mention @RahmEmanuel
+												.col-md-10.comment-actions(style="margin-left: 15px")
+													span.like Like
+													span.reply Reply
+											.comment.comment-2.col-md-12
+												.col-md-1
+													img(src="/images/allen-smith.png")
+												.col-md-10(style="margin-left: 15px")
+													span.comment-user-name Allem Smith 
+													span.comment-user-text I think this is the best solution to solve the increasing police brutality incidents.
+												.col-md-10.comment-actions(style="margin-left: 60px")
+													span.like Like
+													span.reply Reply
+											hr.full
+											.col-md-12(style="padding-bottom: 20px")
+												p.view-more View 321 More Comments
+												input.write-comment(type="text" placeholder="Write a comment." style="width: 100%; border: none")
+										hr.full
+										.col-md-12
+											span June 30, 2016 | 02:30PM
+
+			include ./sidebars/sidebar-right.jade
+	else
+		style.
+			body {
+			background-image: url('/images/loginbg.png');
+			height: 100%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: 0;
+			}
+
+			#body,
+			.container {
+				background: none !important;
+			}
+
+		h2(style="text-align: center; color: #fff; line-height: 50px") Welcome to Politik,<br /> please 
+			a(href="/admin/signin") Sign In 
+			span to continue.
+		h2(style="text-align: center; color: #fff; line-height: 50px") New Users can Register<br />by clicking 
+			a(href="/admin/register") Here
+		

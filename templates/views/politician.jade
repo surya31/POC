@@ -1,0 +1,232 @@
+extends ../layouts/default
+
+block content
+		include ./map.jade
+		include ./indices.jade
+		.container(style="background-color: #cecece; padding: 30px 0")
+			include ./sidebars/sidebar-left.jade
+			.col-md-6
+				if user
+					.row.voice(style="padding-bottom: 20px")
+						.voice-top.row(style="margin-left: 0; margin-right: 0")
+							.col-md-3
+								img.pull-left(src="/images/donald-trump-profile-image.png" style="margin-top: 20px;")
+							.col-md-7.col-md-offset-1(style="margin-top: 15px; margin-left: 10%;")
+								span.user-name.party-verified(style="padding: 0") Donald Trump
+								img.pull-right(src="/images/support-icon.png" style="margin-right: -32px")
+								p.user-location(style="padding: 0") NEW YORK, US
+								hr
+								p.work CEO at 
+									b The Trump Organization.
+								p.party-pol Party Affiliated with 
+									b Republican Party
+								p.view-full View Full Profile
+								img.pull-left(src="/images/raise-voice-icon.png")
+								button.btn.btn-danger.pull-right Donate
+						hr.full-dark
+						.voice-bottom.col-md-12(style="font-size: 20px")
+							.col-md-4
+								.voice-stat(style="color: #991b1c; border-bottom: 4px solid #991b1c; margin-bottom: 10px;")
+									p(style="text-align: left;") 04
+									p(style="text-align: left;") VOICES
+							.col-md-4
+								.supporters-stat(style="color: #424242; border-bottom: 4px solid #424242; margin-bottom: 10px;")
+									p(style="text-align: left;") 14
+									p(style="text-align: left;") SUPPORTERS
+							.col-md-4
+								.supporting-stat(style="color: #424242; border-bottom: 4px solid #424242; margin-bottom: 10px")
+									p(style="text-align: left;") 32
+									p(style="text-align: left;") SUPPORTING
+						hr.full-dark
+						.col-md-12
+							p(style="font-size: 18px") Similarities
+						hr.full-dark
+						.col-md-12
+							.col-md-3
+								img(src="/images/us-flag.png")
+							.col-md-9
+								select
+									option(selected) Select Location
+								progress(value="42" max="100")
+								p.similar-big 42% Similar
+						.col-md-12
+							.col-md-6
+								p Housing
+								progress(value="35" max="100")
+								p.similar-big 35% Similar
+							.col-md-6
+								p Role of Govenment
+								progress(value="65" max="100")
+								p.similar-big 65% Similar
+				.row.voice.voice-user
+					.block.block-head.row(style="padding: 0")
+						.col-md-10
+							span.cat.pull-left(style="padding-right: 5px") Terrorism
+							span.mention.pull-left  | @HillaryClinton
+							span.mention.more.pull-left(style="padding-left: 5px")  & more
+						.col-md-2
+							img.pull-right(src="/images/3-dots-icon.png")
+					hr
+					.block.block-user.row
+						.col-md-1
+							img(src="/images/donald-trump.png")
+						.col-md-11
+							p.user-name.user-verified(style="padding-left: 25px") Donald Trump
+							p.user-location(style="padding-left: 25px") New York, US
+					.block.block-headline.row
+						.col-md-12
+							b ISIS exploded on Hillary Clinton's watch- she's done nothing about it and never will. Not capable!
+					.block.block-image.row
+						img(src="/images/trump-post.png" style="display: block; margin: 0 auto")
+					.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+						.col-md-3
+							button.btn.btn-agree
+								img(src="/images/Politician_42.png")
+							span.agree 6876
+						.col-md-6
+							progress(value="6876" max="17632")
+						.col-md-3
+							span.disagree 932
+							button.btn.btn-disagree
+								img(src="/images/Politician_45.png")
+						hr
+						.col-md-12(style="padding-bottom: 20px")
+
+							input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+					hr
+					.col-md-12
+						span June 30, 2016 | 03:50 PM
+
+				.row.voice.voice-user
+						.block.block-head.row(style="padding: 0")
+							.col-md-6
+								span.cat.pull-left(style="padding-right: 5px") Immigration
+								span.mention.pull-left  | @JohnMcCain
+							.col-md-6
+								img.pull-right(src="/images/3-dots-icon.png")
+						hr
+						.block.block-user.row
+							.col-md-1
+								img(src="/images/donald-trump.png")
+							.col-md-11
+								p.user-name.user-verified(style="padding-left: 25px") Donald Trump
+								p.user-location(style="padding-left: 25px") New York, US
+						.block.block-headline.row
+							.col-md-12
+								b John McCain is a war hero because he was captured. I like people that don't get captured.
+						.block.block-text.row
+							.col-md-12
+								p He's using his veteran status to gain political traction. Be careful of such people!
+									span.read-more Read More...
+						.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+							.col-md-3
+								button.btn.btn-agree
+									img(src="/images/Politician_42.png")
+								span.agree 3004
+							.col-md-6
+								progress(value="3004" max="3749")
+							.col-md-3
+								span.disagree 745
+								button.btn.btn-disagree
+									img(src="/images/Politician_45.png")
+						.block.block-comments.row
+							.comment.comment-1.col-md-12
+								.col-md-1
+									img(src="/images/ghazi-khan.png")
+								.col-md-10(style="margin-left: 15px")
+									span.comment-user-name Ghazi Khan 
+									span.comment-user-text All veterans are war heros, getting captured is not a requisite.
+								.col-md-10.comment-actions(style="margin-left: 60px")
+									span.like Like
+									span.reply Reply
+							.comment.comment-2.col-md-12
+								.col-md-1
+									img(src="/images/johnathan-doe.png")
+								.col-md-10(style="margin-left: 15px")
+									span.comment-user-name Johnathan Doe 
+									span.comment-user-text Do not politicize our veterans and their work for our country.
+								.col-md-10.comment-actions(style="margin-left: 60px")
+									span.like Like
+									span.reply Reply
+							hr
+							.col-md-12(style="padding-bottom: 20px")
+								p.view-more View 56 More Comments
+								input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+						hr
+						.col-md-12
+							span June 30, 2016 | 02:30 PM
+				.row.voice.voice-user
+					.block.block-head.row
+						.col-md-10
+							span.cat.pull-left(style="padding-right: 5px") Immigration
+						.col-md-2
+							img.pull-right(src="/images/3-dots-icon.png")
+					hr
+					.block.block-user.row
+							.col-md-1
+								img(src="/images/donald-trump.png")
+							.col-md-11
+								p.user-name.user-verified(style="padding-left: 25px") Donald Trump
+								p.user-location(style="padding-left: 25px") New York, US
+					.block.block-headline.row
+						.col-md-12
+							b We must suspend immigration from regions linked with terrorism until a proven vetting method is in place.
+					.block.block-image-row
+						img(src="/images/sidhant-voice-3.png" style="display: block; margin: 0 auto")
+					.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+						.col-md-3
+							button.btn.btn-agree
+								img(src="/images/Politician_42.png")
+							span.agree 4380
+						.col-md-6
+							progress(value="4380" max="14255")
+						.col-md-3
+							span.disagree 9875
+							button.btn.btn-disagree
+								img(src="/images/Politician_45.png")
+						hr
+						.col-md-12(style="padding-bottom: 20px")
+							input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+					hr
+					.col-md-12
+						span June 30, 2016 | 03:50 PM
+				.row.voice.voice-user
+						.block.block-head.row(style="padding: 0")
+							.col-md-10
+								span.cat-abortion.pull-left(style="padding-right: 5px") Foreign Policy
+							.col-md-2
+								img.pull-right(src="/images/3-dots-icon.png")
+						hr
+						.block.block-user.row
+							.col-md-1
+								img(src="/images/donald-trump.png")
+							.col-md-11
+								p.user-name.user-verified(style="padding-left: 25px") Donald Trump
+								p.user-location(style="padding-left: 25px") New York, US
+						.block.block-headline.row
+							.col-md-12
+								b Tax Chinese imports coming into the United States
+						.block.block-image.row
+								img(src="/images/donald-trump-voice-4.png" style="display: block; margin: 0 auto")
+						.block.block-text-row
+							.col-md-12
+								p Chinese goods have flooded American markets and replaced American goods at a cheaper price. This needs to be, 
+									span.read-more Read More...
+						.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+							.col-md-3
+								button.btn.btn-agree
+									img(src="/images/Politician_42.png")
+								span.agree 5324
+							.col-md-6
+								progress(value="5324" max="6256")
+							.col-md-3
+								span.disagree 932
+								button.btn.btn-disagree
+									img(src="/images/Politician_45.png")
+							hr
+							.col-md-12(style="padding-bottom: 20px")
+								input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+						hr
+						.col-md-12
+							span June 30, 2016 | 02:30 PM		
+			include ./sidebars/sidebar-right.jade

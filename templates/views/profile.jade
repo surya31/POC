@@ -1,0 +1,227 @@
+extends ../layouts/default
+
+block content
+		include ./map.jade
+		include ./indices.jade
+		.container(style="background-color: #cecece; padding: 30px 0")
+			include ./sidebars/sidebar-left.jade
+			.col-md-6
+				if user
+					.row.voice(style="padding-bottom: 20px")
+						.voice-top.row(style="margin-left: 0; margin-right: 0")
+							.col-md-3
+								img.pull-left(src="/images/sidhant-profile-image.png" style="margin-top: 20px;")
+							.col-md-7.col-md-offset-1(style="margin-top: 15px; margin-left: 10%;")
+								span.user-name(style="padding: 0") #{user.name.first} #{user.name.last}
+								img.pull-right(src="/images/support-icon.png" style="margin-right: -32px")
+								p.user-location(style="padding: 0") #{user.location}
+								hr
+								p.work #{user.post} at 
+									b #{user.company}.
+								p.edu #{user.qualification} from 
+									b #{user.university}
+								p.party Party Affiliated with 
+									b #{user.party}
+								p.view-full View Full Profile
+						hr.full-dark
+						.voice-bottom.col-md-12(style="font-size: 20px")
+							.col-md-4
+								.voice-stat(style="color: #991b1c; border-bottom: 4px solid #991b1c; margin-bottom: 10px;")
+									p(style="text-align: left;") 04
+									p(style="text-align: left;") VOICES
+							.col-md-4
+								.supporters-stat(style="color: #424242; border-bottom: 4px solid #424242; margin-bottom: 10px;")
+									p(style="text-align: left;") 14
+									p(style="text-align: left;") SUPPORTERS
+							.col-md-4
+								.supporting-stat(style="color: #424242; border-bottom: 4px solid #424242; margin-bottom: 10px")
+									p(style="text-align: left;") 32
+									p(style="text-align: left;") SUPPORTING
+						hr.full-dark
+						.col-md-2
+							img(src="/images/sidhanth-comment-profile-image.png")
+						.col-md-10
+							input.write-comment(type="text" placeholder="Raise your voice" style="width: 100%")
+				.row.voice.voice-user
+					.block.block-head.row(style="padding: 0")
+						.col-md-10
+							span.cat.pull-left(style="padding-right: 5px") Elections
+							span.mention.pull-left  | @StenyHoyer, @DebbieShultz 
+							span.mention.more.pull-left(style="padding-left: 5px")  & more
+						.col-md-2
+							img.pull-right(src="/images/3-dots-icon.png")
+					hr
+					.block.block-user.row
+						.col-md-1
+							img(src="/images/sidhanth-comment-profile-image.png")
+						.col-md-11
+							p.user-name(style="padding-left: 25px") #{user.name.first} #{user.name.last}
+							p.user-location(style="padding-left: 25px") Chicago, Illinois
+					.block.block-headline.row
+						.col-md-12
+							b Both the democrats and the republicans should fix their nomination systems!
+					.block.block-image.row
+						img(src="/images/sidhanth-voice-1.png" style="display: block; margin: 0 auto")
+					.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+						.col-md-3
+							button.btn.btn-agree
+								img(src="/images/Politician_42.png")
+							span.agree 6930
+						.col-md-6
+							progress(value="6930" max="7862")
+						.col-md-3
+							span.disagree 932
+							button.btn.btn-disagree
+								img(src="/images/Politician_45.png")
+						hr
+						.col-md-12(style="padding-bottom: 20px")
+
+							input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+					hr
+					.col-md-12
+						span June 30, 2016 | 03:50 PM
+
+				.row.voice.voice-user
+						.block.block-head.row(style="padding: 0")
+							.col-md-6
+								span.cat.pull-left(style="padding-right: 5px") Healthcare
+								span.mention.pull-left  | @BarrackObama
+							.col-md-6
+								img.pull-right(src="/images/3-dots-icon.png")
+						hr
+						.block.block-user.row
+							.col-md-1
+								img(src="/images/sidhanth-comment-profile-image.png")
+							.col-md-11
+								p.user-name(style="padding-left: 25px") #{user.name.first} #{user.name.last}
+								p.user-location(style="padding-left: 25px") Chicago, Illinois
+						.block.block-headline.row
+							.col-md-12
+								b America needs an universal healthcare program
+						.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+							.col-md-3
+								button.btn.btn-agree
+									img(src="/images/Politician_42.png")
+								span.agree 3004
+							.col-md-6
+								progress(value="3004" max="3749")
+							.col-md-3
+								span.disagree 745
+								button.btn.btn-disagree
+									img(src="/images/Politician_45.png")
+						.block.block-comments.row
+							.comment.comment-1.col-md-12
+								.col-md-1
+									img(src="/images/ghazi-khan.png")
+								.col-md-10(style="margin-left: 15px")
+									span.comment-user-name Ghazi Khan 
+									span.comment-user-text Why should I have to pay taxes from my own hard-earned money in order to help another person pay their medical bills? I should be able to choose whether I want to help someone and not be fored by the government to do so.
+								.col-md-10.comment-actions(style="margin-left: 60px")
+									span.like Like
+									span.reply Reply
+							.comment.comment-2.col-md-12
+								.col-md-1
+									img(src="/images/sidhanth-comment-profile-image.png")
+								.col-md-10(style="margin-left: 15px")
+									span.comment-user-name Siddhant Kalash 
+									span.comment-user-text 
+										span.mention @GhaziKhan
+										span The amount of taxes that the government would take from you regarding universal healthcare would be very small, unless you live near the poverty line, it would not adversely affect your finances.
+								.col-md-10.comment-actions(style="margin-left: 60px")
+									span.like Like
+									span.reply Reply
+							hr
+							.col-md-12(style="padding-bottom: 20px")
+								p.view-more View 56 More Comments
+								input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+						hr
+						.col-md-12
+							span June 30, 2016 | 02:30 PM
+				.row.voice.voice-user
+					.block.block-head.row
+						.col-md-10
+							span.cat.pull-left(style="padding-right: 5px") Immigration
+							span.mention.pull-left  | @DonaldTrump, @BarrackObama
+						.col-md-2
+							img.pull-right(src="/images/3-dots-icon.png")
+					hr
+					.block.block-user.row
+							.col-md-1
+								img(src="/images/sidhanth-comment-profile-image.png")
+							.col-md-11
+								p.user-name(style="padding-left: 25px") #{user.name.first} #{user.name.last}
+								p.user-location(style="padding-left: 25px") Chicago, Illinois
+					.block.block-headline.row
+						.col-md-12
+							b Immigration is a complex issue that cannot be tackled by simply building walls.
+					.block.block-image-row
+						img(src="/images/sidhant-voice-3.png" style="display: block; margin: 0 auto")
+					.block.block-text-row
+						.col-md-12
+							p Immigration is a complicated, multi-faceted issue. IT affects the lives of everyone involved: both immigrants and legal, 
+					.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+						.col-md-3
+							button.btn.btn-agree
+								img(src="/images/Politician_42.png")
+							span.agree 1264
+						.col-md-6
+							progress(value="1264" max="3812")
+						.col-md-3
+							span.disagree 2548
+							button.btn.btn-disagree
+								img(src="/images/Politician_45.png")
+						hr
+						.col-md-12(style="padding-bottom: 20px")
+							input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+					hr
+					.col-md-12
+						span June 30, 2016 | 03:50 PM
+				.row.voice.voice-user
+						.block.block-head.row(style="padding: 0")
+							.col-md-10
+								span.cat.pull-left(style="padding-right: 5px") Education
+								span.mention.pull-left  | @DonaldTrump @TedCruz @GOP
+							.col-md-2
+								img.pull-right(src="/images/3-dots-icon.png")
+						hr
+						.block.block-user.row
+							.col-md-1
+								img(src="/images/sidhanth-comment-profile-image.png")
+							.col-md-11
+								p.user-name(style="padding-left: 25px") #{user.name.first} #{user.name.last}
+								p.user-location(style="padding-left: 25px") Chicago, Illinois
+						.block.block-headline.row
+							.col-md-12
+								b The American Department of Education should be improved, not removed
+						.block.block-agree-disagree.row(style="display: block; margin: 0 auto")
+							.col-md-3
+								button.btn.btn-agree
+									img(src="/images/Politician_42.png")
+								span.agree 5324
+							.col-md-6
+								progress(value="5324" max="6256")
+							.col-md-3
+								span.disagree 932
+								button.btn.btn-disagree
+									img(src="/images/Politician_45.png")
+							hr
+							.col-md-12(style="padding-bottom: 20px")
+								input.write-comment(type="text" placeholder="Write a comment." style="width: 100%")
+						hr
+						.col-md-12
+							span June 30, 2016 | 02:30 PM		
+			include ./sidebars/sidebar-right.jade
+			style.
+				.block-locationinfo .location-list:before {
+					content: '';
+					background: url('/images/location-icon-left-menu.png');
+					background-repeat: no-repeat;
+					background-color: #fff;
+					width: 67px;
+					height: 173px;
+					position: absolute;
+					top: 135px;
+					left: 18px;
+					background-position: 17px 9px !important;
+				}
+						

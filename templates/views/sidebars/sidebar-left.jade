@@ -1,0 +1,114 @@
+.col-md-3(style="margin-top: -20px")
+	if locals.section == 'home' || locals.section == 'politician' || locals.section == 'voices'
+		.block.block-userinfo.row(style="margin-left: 0; margin-right: 0; max-width: 100%")
+			if user
+				h3.user-name(style="text-align: center")
+					a(href="/profile" style="color: #333;padding-left: 40px;") #{user.name.first} #{user.name.last}
+			else
+				h3
+					a.sign-in(href="/admin/signin") Sign In
+	else if locals.section == 'profile'
+		style.
+			.block-compare h3:before {
+			   margin-top: 22px;
+			}
+
+			.block-locationinfo .location-list:before {
+				top: 137px;
+				margin-top: 89px;
+			}			
+			
+			.block-influencers h3:before {
+				top: 344px;
+				margin-top: 131px;
+			}
+
+			.block-issues h3:before {
+				top: 430px;
+				margin-top: 123px;
+			}
+		.block.block-compare.row(style="margin-top: 20px; margin-left: 0; margin-right: 0; max-width:100%; margin-bottom: 20px")
+				h3(style="text-align: center; margin-top: 0; margin-bottom: -22px") Compare
+				hr.full-dark
+				.col-md-5
+					img(src="/images/sidhanth-comment-profile-image.png" style="width: 42%; margin-right: 5px;")
+					img(src="/images/compare-politik-image.png" style="width: 42%;")
+				.col-md-7
+					select
+						option(selected) Select Location
+					progress(value="42" max="100")
+					p.similar 42% Similar
+				
+	.block.block-locationinfo.row(style="margin-left: 0; margin-right: 0; max-width: 100%; margin-top: -9px;")
+		h3.location-list(style="text-align: center; margin-left: -8px; background: none;") Location
+		ul
+			li WORLDWIDE
+			li COUNTRY
+			li STATE
+			li CITY
+	.block.block-influencers.row(style="margin-top: -7px; margin-left: 0; margin-right: 0; max-width:100%")
+		h3(style="text-align: center") Influencers
+	.block.block-issues.row(style="margin-top: -28px; margin-left: 0; margin-right: 0; max-width:100%")
+		h3(style="text-align: center") Issues
+		.block.block-issue-election(style="margin-top: -10px")
+			span(style="display: inline-block; vertical-align: middle; line-height: normal; color: #fff; font-size: 20px") ELECTION
+		.block.block-issue-politics
+			span(style="display: inline-block; vertical-align: middle; line-height: normal; color: #fff; font-size: 20px") POLITICS
+		.block.block-issue-democracy(style="margin-bottom: -10px")
+			span(style="display: inline-block; vertical-align: middle; line-height: normal; color: #fff; font-size: 20px") DEMOCRACY
+		.view-all
+			p(style="text-align: center; background-color: #fff; padding: 15px 0") View All
+
+if !user
+	style.
+		.block-userinfo .user-name:before {
+			content: '';
+			background-image: url('/images/profile-picture-left-menu.png');
+			background-repeat: no-repeat;
+			background-color: #fff;
+			width: 79px;
+			height: 64px;
+			position: absolute;
+			top: 22px;
+			left: -64px;
+			background-position: 27px 18px;
+		}
+
+		.block-locationinfo .location-list:before {
+			content: '';
+			background: url('/images/location-icon-left-menu.png');
+			background-repeat: no-repeat;
+			background-color: #fff;
+			width: 79px;
+			height: 234px;
+			position: absolute;
+			top: 98px;
+			left: -64px;
+			background-position: 26px 10px;
+		}
+
+		.block-influencers h3:before {
+			content: '';
+			background-image: url('/images/influencer-icon-left-menu.png');
+			background-repeat: no-repeat;
+			background-color: #fff;
+			width: 79px;
+			height: 66px;
+			position: absolute;
+			top: 345px;
+			left: -64px;
+			background-position: 27px 13px;
+		}
+
+		.block-issues h3:before {
+			content: '';
+			background-image: url('/images/issue-icon-left-menu.png');
+			background-repeat: no-repeat;
+			background-color: #fff;
+			width: 79px;
+			height: 66px;
+			position: absolute;
+			top: 423px;
+			left: -64px;
+			background-position: 41px 16px;
+		}
